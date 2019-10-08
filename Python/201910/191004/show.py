@@ -1,4 +1,3 @@
-# 石黒博史
 def time_log(func):
     """処理時間を計測するデコレータ関数"""
     def wrapper(*args,**kwargs):
@@ -8,7 +7,7 @@ def time_log(func):
         res = func(*args,**kwargs)
         end = datetime.datetime.today()
         delta = end - start
-        print("\n---end:" + func.__name__,delta,"sec")
+        print("---end:" + func.__name__,delta,"sec")
         return res
     return wrapper
 
@@ -18,11 +17,16 @@ def show(x=9,*,digit=3):
        @param x     表示させたい九九の段数（default=9）
        @param digit 表示調整桁数（default=3）"""
     for i in range(1,x+1):
-        tmp=str(i).rjust(digit," ")
-        print(f"\n{tmp}: ",end="")
+        tmp = str(i).center(digit," ")
+        print(f"\n****{tmp}の段"+"*"*20)
         for j in range(1,10):
-            result = str(i*j).rjust(digit," ")
-            print(f"{result}",end=" ")
+            if j % 3 == 0:
+                tmp = " ||\n"
+            else:
+                tmp = " || "
+            result = str(i*j).center(digit," ")
+            print("%03s" % str(i) + " x " + f"{j}" + " = "\
+                  + f"{result}",end=tmp)
 
 show()
 show(111)

@@ -64,11 +64,16 @@ class Prime:
 
 # デコレータ関数の定義
 def show_func_name(func):
+    # 関数内で関数を定義する
     def wrapper(*args,**kwargs):
+        # 前処理
         print("---start:" + func.__name__)
+        # 関数の実行
         res = func(*args,**kwargs)
+        # 後処理
         print("\n---end:" + func.__name__)
         return res
+    # 関数オブジェクトを返す
     return wrapper
 
 # 処理時間を計測するデコレータ関数の定義
