@@ -11,3 +11,5 @@ def show(first=1,end=9):
     print(df)
 
 show()
+show(4)
+show(10,15)
