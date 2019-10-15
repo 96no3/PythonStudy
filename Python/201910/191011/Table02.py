@@ -25,7 +25,10 @@ class Table:
                    @return  該当する要素があればその値の文字列、
                             なければ' '(空白１つ)の文字列"""
                 if (y,x) in d:
-                    return str(d[y,x])
+                    if d[y,x] in ( None,[],(),{} ):
+                        return " "
+                    else:
+                        return str(d[y,x])                    
                 else:
                     return " "
             
@@ -83,8 +86,8 @@ class Table:
     def __getitem__(self,index):
         if index in self._table_dict:
             return self._table_dict[index]
-        else:
-            Table.err()
+        #else:
+        #    Table.err()
 
     def __setitem__(self,index,value):
         if len(index) == 2:
@@ -102,11 +105,16 @@ t[2,3]=111
 print(t)
 print(t[2,3])
 print(111 in t)
+print(t[2,1] is None)
 
 t2=Table([[1,2,3,4,5],[0,111,"hello"],[6,7]])
 print(t2)
 t2[2,3]=111
 print(t2)
 t2[10,10]= 2
+print(t2)
+t2[10,10]+= 200
+print(t2)
+t2[11,11] = ()
 print(t2)
 #t2[1000,0]
