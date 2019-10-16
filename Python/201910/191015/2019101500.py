@@ -26,7 +26,7 @@ def g(a,b):
 
 g((x*x for x in range(10)),0)
 
-# 集合(セット)
+# 集合(セット)内包表記
 {x*x for x in range(10)}
 7 in {x*x for x in range(10)}
 49 in {x*x for x in range(10)}

@@ -1,0 +1,21 @@
+PythonでWebサーバを起動(cmd)
+python -m http.server --cgi 8080
+終了　Ctrl+C
+
+「127.0.0.1」
+http://localhost:8080
+※ユーザー直下のディレクトリを参照
+
+http://localhost:8080/cgi-bin/kakugen.py
+環境変数の設定
+utf-8で日本語フォントが文字化け→utf8mb4でOK
+
+シェバンと呼ばれるPythonを実行するためのコマンドを指定する
+この指定はLinux/OS Xで必要
+#!/usr/bin/env python3
+
+・URLパラメータの値を取得
+書式
+http://（アプリのアドレス）?キー1=値1&キー2=値2&キー3=値3
+
+http://localhost:8080/cgi-bin/show-params.py?mode=test&n=30&q=500

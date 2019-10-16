@@ -25,7 +25,7 @@ class Table:
                    @return  該当する要素があればその値の文字列、
                             なければ' '(空白１つ)の文字列"""
                 if (y,x) in d:
-                    if d[y,x] in ( None,[],(),{} ):
+                    if d[y,x] in ( None,[],(),{},"" ):
                         return " "
                     else:
                         return str(d[y,x])                    
@@ -70,15 +70,14 @@ class Table:
                     _count += 1
 
         self._table_dict = tmp_dict
-        self.f = make_string
+        self._f = make_string
 
     @staticmethod
     def err(message=""):
         raise SyntaxError(message)
 
     def __str__(self):
-        _table_str = self.f(self._table_dict)
-        return _table_str
+        return self._f(self._table_dict)
 
     def __contains__(self,value):
         return value in self._table_dict.values()
@@ -118,3 +117,4 @@ print(t2)
 t2[11,11] = ()
 print(t2)
 #t2[1000,0]
+#Table().err("test staticmethod")
