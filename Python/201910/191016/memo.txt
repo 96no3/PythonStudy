@@ -7,8 +7,8 @@ http://localhost:8080
 ※ユーザー直下のディレクトリを参照
 
 http://localhost:8080/cgi-bin/kakugen.py
-環境変数の設定
-utf-8で日本語フォントが文字化け→utf8mb4でOK
+環境変数の設定→設定後、再起動が必要
+utf-8で日本語フォントが文字化け→(utf8mb4でOKだが、環境変数でPYTHONIOENCODINGには使用不可)
 
 シェバンと呼ばれるPythonを実行するためのコマンドを指定する
 この指定はLinux/OS Xで必要

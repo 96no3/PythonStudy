@@ -1,0 +1,56 @@
+＜html input要素のtype属性の主要な値＞
+・text　　　一行テキストボックス
+・hidden　　隠しフィールド（画面に表示されない）
+・submit　　送信ボタン
+・checkbox　チェックボックス
+
+　　　要素
+-------------------
+<input type="text">
+       ----  ----
+       属性　 値
+
+＜機械学習ライブラリ＞
+・TensorFlow
+https://www.tensorflow.org/
+Googleがオープンソースで公開した機械学習・深層学習・ニューラルネットワークなどのためのライブラリ。
+柔軟で汎用性があり、高いパフォーマンス、スケーラビリティが特徴
+
+・scikit-learn
+https://scikit-learn.org/stable/
+分類・回帰・クラスタリング・次元削減など、機械学習でよく使われる様々なアルゴリズムをサポート
+
+・Caffe
+https://caffe.berkeleyvision.org/
+C++で実装されており、高速な計算処理が可能な深層学習ライブラリ。
+GPUを利用した高速な演算が可能
+
+「Pylearn2」「Theano」「chainer」「PyML」など
+
+＜ユニットテスト＞
+import unittest
+
+クラス定義でunittest.TestCaseを継承
+class Test(unittest.TestCase):
+
+テストの前準備と後片付け
+
+def setUp(self):
+  # 前処理（データベースの接続やインスタンス生成）
+
+def tearDown(self):
+  # 後片付け（データベースの接続解除）
+値を検証するメソッド　引数：(テストしたい値,想定する値,"テストの説明")
+・self.assertEqual(a,b)　    確認：a==b
+・self.assertNotEqual(a,b)　 確認：a!=b
+・self.assertTrue(a) 　      確認：bool(a) is True
+・self.assertFalse(a)  　    確認：bool(a) is False
+・self.assertIs(a,b)   　    確認：a is b
+・self.assertIsNot(a,b)　    確認：a is not b
+・self.assertIsNone(a)       確認：a is None
+・self.assertIsNotNone(a)    確認：a is not None
+・self.assertIn(a,b)         確認：a in b
+・self.assertNotIn(a,b)      確認：a not in b
+・self.assertIsInstance(a,b) 確認：isinstance(a,b)
+・self.assertNotIsInstance(a,b) 確認：not isinstance(a,b)
+
