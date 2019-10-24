@@ -6,8 +6,6 @@ import os,json
 import datetime,random,hashlib
 import cgitb
 
-cgitb.enable()
-
 class CookieSession:
     """クッキーを使ったセッションのクラス"""
     SESSION_ID = "CookieSessionId"
@@ -78,6 +76,7 @@ class CookieSession:
         self.values = {}
 
 if __name__ == "__main__":
+    cgitb.enable()
     # 実行テスト(訪問カウンタの例)
     ck = CookieSession()
     counter = 1    
