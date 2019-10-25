@@ -10,11 +10,11 @@ def main():
     screen = pygame.display.get_surface()
     
     # 背景画像（bg.jpg）の取得
-    bg = pygame.image.load("C:\\import\\texture\\bg.png").convert_alpha()    
+    bg = pygame.image.load("/home/g6no3/ドキュメント/GitHub/PythonStudy/Python/Pygame/texture/bg.png").convert_alpha()    
     rect_bg = bg.get_rect()
 
     # プレイヤー画像(player.png)の取得
-    player = pygame.image.load("C:\\import\\texture\\player.png").convert_alpha()    
+    player = pygame.image.load("/home/g6no3/ドキュメント/GitHub/PythonStudy/Python/Pygame/texture/player.png").convert_alpha()    
     rect_player = player.get_rect()
     rect_player.center = (x, y) # プレイヤー画像の初期位置
 

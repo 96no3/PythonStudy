@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # ヘッダ情報を出力
-print("Content-Type: text/html; charset=utf8mb4")
+print("Content-Type: text/html; charset=utf-8")
 
 # ヘッダと本体データを区切る
 print("")
