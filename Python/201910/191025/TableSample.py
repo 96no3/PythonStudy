@@ -1,3 +1,6 @@
+import os
+print(os.path.dirname("TableSample.py"))
+
 class Table:
     def __init__(self, xss=[]):
         if not isinstance(xss, list) or \

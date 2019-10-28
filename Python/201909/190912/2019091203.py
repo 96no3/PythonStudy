@@ -1,3 +1,3 @@
 import qrcode
-img=qrcode.make("http://toytoto2019.wp.xdomain.jp/")
-img.save("toytoto2019.png")
+img=qrcode.make("https://www.youtube.com/channel/UCo-yJp0qhSfouY4fRT2GfrQ")
+img.save("TotoYoutubeQR.png")
