@@ -97,14 +97,99 @@ print("レポート＝\n",cl_report)
 
 <div style="text-align: center;width: 100%;">
 <img src="train00.png" style="width:60%; margin-left:auto; margin-right:auto"/>
-<div style="white-space: pre;">[実行結果]</div>
+<div style="white-space: pre;">[実行結果(SVM)]</div>
 </div>
 
 ### チューニング
 <dl>
- <dd>正解率の精度が55％で、良い正解率ではないのでチューニングが必要</dd>
+ <dd>正解率の精度が55％程で、良い正解率ではないのでチューニングが必要</dd>
  <dt>ランダムフォレストのアルゴリズム</dt>
  <dd>SVMのアルゴリズムで分類したが、精度の高いことで有名なランダムフォレストのアルゴリズムに変更</dd>
  <dd>scikit-learnでは、アルゴリズムを変更しても、データの訓練はfit()メソッド、データの予測はpredict()メソッドと、APIが統一されている。</dd>
 </dl>
-* 
+
+```
+# ランダムフォレストのアルゴリズムを利用して学習
+from sklearn.ensemble import RandomForestClassifier
+clf = RandomForestClassifier()
+clf.fit(data_train,label_train)
+```
+
+<div style="text-align: center;width: 100%;">
+<img src="train01.png" style="width:60%; margin-left:auto; margin-right:auto"/>
+<div style="white-space: pre;">[実行結果(ランダムフォレスト)]</div>
+</div>
+<br>
+<dl>
+ <dd>正解率の精度が67％程に改善</dd>
+ <dd>さらに評価5,6、7,8の差はほぼないとし、正解の判定を甘くして再評価</dd>
+</dl>
+
+```
+# 予測してみる
+predict = clf.predict(data_test)
+
+total = ok = 0
+for idx,pre in enumerate(predict):
+    # pre = predict[idx]     # 予測したラベル
+    answer = label_test[idx] # 正解ラベル
+    total += 1
+    # ほぼ正解なら、正解とみなす
+    if(pre-1) <= answer <= (pre+1):
+        ok += 1
+print("正解率＝",ok,"/",total,"=",ok/total)
+```
+<div style="text-align: center;width: 100%;">
+<img src="train02.png" style="width:50%; margin-left:auto; margin-right:auto"/>
+<div style="white-space: pre;">[実行結果(甘い評価)]</div>
+</div>
+<br>
+<dl>
+ <dd>正確な分類ではないが、正解率96％からワインの美味しさ（グレード）は、その成分から分かることが言える。</dd>
+</dl>
+
+### ワインの成分を視覚化
+
+```
+import pandas as pd
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d.axes3d import Axes3D
+
+# ワインデータ(CSV)を読み込む
+wine = pd.read_csv("/home/g6no3/winequality-white.csv",delimiter=";")
+
+# ワインのグレードを表す列だけ取り出す
+y = wine["quality"] # label
+
+# 3Dで描画
+xname = "alcohol"
+yname = "sulphates"
+zname = "total sulfur dioxide"
+
+plt.style.use('ggplot')
+fig = plt.figure()
+ax = Axes3D(fig)
+ax.set_xlabel(xname)
+ax.set_ylabel(yname)
+ax.set_zlabel(zname)
+ax.scatter3D(
+    wine[xname],
+    wine[yname],
+    wine[zname],
+    c=y,s=y**2,cmap="cool")
+plt.show()
+```
+
+<dl> 
+ <dt>Pandasライブラリ　pd.read_csv()</dt>
+ <dd>数表データの操作を行うライブラリで、CSVファイルの読み込み</dd>
+ <dt>wine["quality"]</dt>
+ <dd>PandasではCSVの1行目にヘッダ行があれば、その名前を使って、フィールドを取り出すことができる。</dd>
+ <dt>matplotlibライブラリ</dt>
+ <dd>データを視覚化することができるライブラリ。</dd>
+</dl>
+
+<div style="text-align: center;width: 100%;">
+<img src="wine_3d.png" style="width:70%; margin-left:auto; margin-right:auto"/>
+<div style="white-space: pre;">[3要素を取り出して3D描画]</div>
+</div>
