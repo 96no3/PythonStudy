@@ -3,7 +3,7 @@
 import cgi
 
 # ヘッダ出力
-print("Context-Type: text/html; charset=utf8mb4")
+print("Context-Type: text/html; charset=utf-8")
 print("")
 
 print("<pre>")

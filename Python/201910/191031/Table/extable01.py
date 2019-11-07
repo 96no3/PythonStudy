@@ -59,14 +59,15 @@ class ExTable(Table):
         self.reset_dict(self._table_list)
         
     def transpose(self):
-        tmp_dict={}
+        self._table_dict = {(j,i):value for (i,j),value in self._table_dict.items()}
+        """tmp_dict={}
         for index,value in self._table_dict.items():
             _y,_x = index
             self._axis_y = max(_x+1,self._axis_y)
             self._axis_x = max(_y+1,self._axis_x)
             trans = _x,_y
             tmp_dict[trans] = value
-        self._table_dict = tmp_dict
+        self._table_dict = tmp_dict"""
         self.get_list()
         
     def __setitem__(self, index, value):

@@ -2,6 +2,7 @@
 import re # 正規表現reモジュールを取り込む
 pat = r"\d+" # raw stringの記述
 string = "This pen is 100yen."
+repl = 200
 # 正規表現検索 どこかにマッチするかを調べてmatchオブジェクトを返す。見つからない場合はNone
 re.search(pat,string) 
 # 文字列の先頭からマッチするかを調べてmatchオブジェクトを返す。見つからない場合はNone

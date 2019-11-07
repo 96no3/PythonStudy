@@ -6,4 +6,4 @@ class Test(unittest.TestCase):
         print("result",v)
 
         # 結果を検証
-        self.assertEqual(v,6,"計算")
+        self.assertEqual(v,5,"計算")
