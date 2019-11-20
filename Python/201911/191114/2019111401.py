@@ -43,7 +43,7 @@ class LinkedList:
         return result
  
     def __repr__(self): ## データ表現の文字列を生成
-        return f'LinkedList({repr(self.head)},{repr(self.tail)})'
+        return f'LinkedList({repr(self.__head)},{repr(self.__tail)})'
  
     def __str__(self): ## 表示用の文字列を生成
         return '(' + ' -> '.join(map(str,self)) + ')'
@@ -60,4 +60,8 @@ def make_LinkedList(*xs):
         else:
             result = tmp
         pre = tmp
+        print("result:",id(result))
+        print("result.tail:",id(result.tail))
+        print("pre:",id(pre))
+        print("pre.tail:",id(pre.tail))
     return result
