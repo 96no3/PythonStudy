@@ -1,3 +1,5 @@
+import functools as ft
+
 class LinkedList:
     def __init__(self, x, tail):
         self.__head = x
@@ -24,6 +26,12 @@ class LinkedList:
             self.__tail = value
         else:
             raise ValueError(f'{value}は連結できません')
+
+    def set_tail(self,value):
+        if isinstance(value,LinkedList) or value is None:
+            self.__tail = value
+        else:
+            raise ValueError(f'{value}は連結できません')
         
     def __iter__(self): ## 再帰構造を辿るイテレータ(ジェネレータ)を生成
         def generator():
@@ -37,27 +45,20 @@ class LinkedList:
         if self.__tail is None:
             raise StopIteration
         result = self.__head
-        tmp = self.__tail
+        tmp = self.__tail        
         self.__head = tmp.head
         self.__tail = tmp.tail
         return result
  
     def __repr__(self): ## データ表現の文字列を生成
-        return f'LinkedList({repr(self.head)},{repr(self.tail)})'
+        result=None
+        for x in reversed([*self]):
+            result=f"LinkedList({repr(x)},{result})"
+        return result
  
     def __str__(self): ## 表示用の文字列を生成
         return '(' + ' -> '.join(map(str,self)) + ')'
     
-def make_LinkedList(*xs):
-    n=len(xs)
-    if n == 0:
-        raise ValueError("引数に1つ以上の要素を入れてください")
-    pre,result = None,None
-    for s in xs:
-        tmp = LinkedList(s,None)
-        if pre:            
-            pre.tail = tmp            
-        else:
-            result = tmp
-        pre = tmp
-    return result
+def make(iterable):
+    return ft.reduce(lambda a,b:(b.set_tail(a),b)[1],
+                     reversed([*(LinkedList(x,None) for x in iterable)]))
