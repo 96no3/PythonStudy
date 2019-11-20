@@ -37,13 +37,16 @@ class LinkedList:
         if self.__tail is None:
             raise StopIteration
         result = self.__head
-        tmp = self.__tail
+        tmp = self.__tail        
         self.__head = tmp.head
         self.__tail = tmp.tail
         return result
  
-    def __repr__(self): ## データ表現の文字列を生成
-        return f'LinkedList({repr(self.head)},{repr(self.tail)})'
+    def __repr__(self): ## データ表現の文字列を生成      
+        tmp="LinkedList("
+        ele = [x for x in map(str,self)]
+        result = tmp + "{0}None".format(tmp.join(x+"," for x in ele))
+        return result + ")" * len(ele)
  
     def __str__(self): ## 表示用の文字列を生成
         return '(' + ' -> '.join(map(str,self)) + ')'
