@@ -1,6 +1,8 @@
 import turtle
 
-turtle.Screen()
+turtle.Screen() # スクリーン作成
+
+# 正方形の描画
 vertex = 4
 for _ in range(vertex):
     turtle.forward(100) # 中心が(0,0)右が+
@@ -19,4 +21,4 @@ def rect(n,length):
 rect(5,100)
 rect(40,15) # 円の表現
 turtle.circle(20)
-turtle.position() # 現在の座標
+print(turtle.position()) # 現在の座標
