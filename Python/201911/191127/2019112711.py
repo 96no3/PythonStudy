@@ -29,15 +29,14 @@ class Frame(Tk.Frame):
         f.pack(fill=Tk.BOTH, expand=1)
         
         f_lb = Tk.Frame(f)
-        f_lb.pack(side=Tk.LEFT, fill=Tk.BOTH, expand=1)
+        f_lb.pack(side=Tk.LEFT, padx=5, pady=5, fill=Tk.BOTH, expand=1)
 
         self.listbox = Tk.Listbox(f_lb)
-        self.listbox.pack(side=Tk.LEFT, padx=5, pady=5, fill=Tk.Y)
+        self.listbox.pack(side=Tk.LEFT, fill=Tk.Y, expand=1)
         self.listbox.bind("<Double-Button-1>", self.change_flower)
         self.listbox.insert(Tk.END, *FLOWERS)
 
-        self.scrollbar = Tk.Scrollbar(
-        f_lb, orient=Tk.VERTICAL,command=self.listbox.yview)
+        self.scrollbar = Tk.Scrollbar(f_lb, orient=Tk.VERTICAL,command=self.listbox.yview)
         self.listbox['yscrollcommand'] = self.scrollbar.set
         self.scrollbar.pack(side=Tk.RIGHT, fill=Tk.Y, expand=1)
 

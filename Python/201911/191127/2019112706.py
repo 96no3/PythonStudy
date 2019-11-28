@@ -61,8 +61,10 @@ class Frame(Tk.Frame):
         self.after(1000, self.counting)
         self.b_start.configure(state=Tk.DISABLED)
         self.b_stop.configure(state=Tk.NORMAL)
+        self.b_reset.configure(state=Tk.DISABLED)
         self.b_inc.configure(state=Tk.DISABLED)
         self.b_dec.configure(state=Tk.DISABLED)
+        
 
     def stop(self):
         self.icon.configure(bg=BLUE)
