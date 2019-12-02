@@ -28,7 +28,6 @@ class Frame(Tk.Frame):
             self.str.set(str[0:-2] + u"です。")
 
 ##------------------------------------------------ 
-
 if __name__ == '__main__':
     f = Frame()
     f.pack()

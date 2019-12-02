@@ -1,5 +1,3 @@
-import sys
-
 def CheckPositiveNum(num):
     if num<0:
         raise Exception("Error")
