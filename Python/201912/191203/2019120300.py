@@ -4,8 +4,23 @@ class Application(tk.Frame):
     class Info(): # 計算途中の値を貯めておく「構造体」的用法の内部クラス
         def __init__(self,x):
             self.x = x  # 平方根を求めたい値
-            self.i = 1  # 回数
+            self.i = 0  # 回数
             self.low, self.high = 0.0, max(1.0, x)
+
+        def __str__(self):
+            i,ans = self.my_sqrt()
+            return f'{i}回目: {ans}'
+
+        def my_sqrt(self):
+            ans = (self.high+self.low)*0.5
+            
+            if ans**2 < self.x:
+                self.low = ans
+            else:
+                self.high = ans
+            
+            self.i += 1
+            return (self.i,ans)
             
     def __init__(self, master):
         super().__init__(master)
@@ -25,24 +40,11 @@ class Application(tk.Frame):
         s = self.entry.get()
         try:
             x = float(s)
+            if self.info is None or self.info.x != x:
+                self.info = self.Info(x)
+            self.result_label.configure(text=str(self.info))
         except:
-            self.result_label.configure(text=f'{s}は不正な入力値です。',fg="red")
-            return
-
-        if self.info is None or self.info.x != x:
-            self.info = self.Info(x)
-
-        info = self.info
-
-        ans = (info.high+info.low)/2.0
-        if ans**2 < x:
-            info.low = ans
-        else:
-            info.high = ans
-
-        self.result_label.configure(text=f'{info.i}回目: {ans}',fg='black')
-        info.i += 1
-
+            self.result_label.configure(text=f'{s}は不正な入力値です。')
 
 root = tk.Tk()
 root.title('平方根の推定')
