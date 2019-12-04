@@ -5,10 +5,11 @@ class ClockApp(tk.Frame):
     def __init__(self,master=None):
         super().__init__(master)
         self.master.title('Clock')
-        self.master.geometry("180x30")
+        #self.master.geometry("180x30")
         self.clock = tk.StringVar()
         self.counting()
-        self.label = tk.Label(self, textvariable=self.clock, relief=tk.SUNKEN, bg='white')
+        self.label = tk.Label(self, textvariable=self.clock, relief=tk.SUNKEN,
+                              font=("MS Mincho",80),bg='white')
         self.label.pack()
 
     def clock_set(self):
