@@ -35,9 +35,6 @@ class Frame(Tk.Frame):
         menu_edit.add_command(label=u'ペースト(V)', command=self.paste, underline=5, 
                               accelerator = os.name=='posix' and 'Ctrl-Y' or 'Ctrl-V')
         menu_edit.add_command(label=u'カーソルのある行を削除', command=self.delete_line, accelerator = 'Shift-Del')
-                              
-
-
 
         # short-cuts
         self.master.bind('<Control-KeyPress-o>', self.open_memo)
@@ -55,11 +52,9 @@ class Frame(Tk.Frame):
         except AttributeError:
             self.master.Tk.call(master, "config", "-menu", menu_bar)
 
-
         self.txt = S.ScrolledText(self, font=('Helvetica', '10'))
         self.txt.pack(fill=Tk.BOTH, expand=1)
         self.txt.focus_set()
-
 
     def new_memo(self, event=None):
         self.file_name=None
@@ -72,27 +67,28 @@ class Frame(Tk.Frame):
                                    
         if fname:
             self.txt.delete('1.0', Tk.END)
-            f=file(fname)
-            self.txt.insert(Tk.END, f.read().decode('shift_jis'))  ## decode is required to show data
-            f.close()
+            with open(fname, mode="r", encoding='shift_jis') as f:
+                for i in f:
+                    self.txt.insert(Tk.END,i)
+                
             self.file_name = fname
             self.master.title(fname)
 
 
     def save(self, f):
-        f.write(self.txt.get('1.0', Tk.END).encode('shift_jis')) ## encode is required to write data
-        f.close()
+        with open(f, mode="w", encoding='shift_jis') as fp:
+            fp.write(self.txt.get('1.0', Tk.END))
             
     def save_memo(self, event=None):
         if self.file_name:
-            self.save(file(self.file_name, 'w'))
+            self.save(self.file_name)
         else:
             self.saveas_memo()
 
     def saveas_memo(self):
         fname = D.asksaveasfilename(filetypes =[('text files', '*.txt')])
         if fname:
-            self.save(file(fname, 'w'))
+            self.save(fname)
             self.file_name=fname
             self.master.title(fname)
 

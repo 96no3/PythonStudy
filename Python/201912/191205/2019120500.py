@@ -1,5 +1,7 @@
 import tkinter as tk
-from tkinter import font
+import os
+
+PATH = os.path.dirname(__file__)+"/"
 
 class TimerApp(tk.Frame):
     def __init__(self, master=None):
@@ -22,13 +24,15 @@ class TimerApp(tk.Frame):
         self.label.pack(fill=tk.X,pady=10)
         f_button = tk.Frame(self)
         f_button.pack()
-        font1 = font.Font(family='Helvetica', size=15, weight='bold')
-        self.b_start = tk.Button(f_button, text='Start', font=font1, command=self.start)
-        self.b_stop = tk.Button(f_button, text='Stop', font=font1, command=self.stop, state=tk.DISABLED)
-        self.b_reset = tk.Button(f_button, text='Reset', font=font1, command=self.reset, state=tk.DISABLED)
-        self.b_start.pack(side=tk.LEFT,ipadx=30, padx=10)
-        self.b_stop.pack(side=tk.LEFT,ipadx=30, padx=10)
-        self.b_reset.pack(side=tk.LEFT,ipadx=30, padx=10)
+        self.image1 = tk.PhotoImage(file=PATH+"start.png")
+        self.b_start = tk.Button(f_button, image=self.image1, command=self.start)
+        self.image2 = tk.PhotoImage(file=PATH+"stop.png")
+        self.b_stop = tk.Button(f_button, image=self.image2, command=self.stop, state=tk.DISABLED)
+        self.image3 = tk.PhotoImage(file=PATH+"reset.png")
+        self.b_reset = tk.Button(f_button, image=self.image3, command=self.reset, state=tk.DISABLED)
+        self.b_start.pack(side=tk.LEFT, padx=10)
+        self.b_stop.pack(side=tk.LEFT, padx=10)
+        self.b_reset.pack(side=tk.LEFT, padx=10)
 
     def time_init(self):
         self.time.set("セットする時間を秒単位で入力してください。")
