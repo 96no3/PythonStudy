@@ -21,6 +21,7 @@ class Frame(Tk.Frame):
         if sum ([v.get() for v in self.v.values()]) == 0:
             self.str.set(u"私はメインフレームしか使ったことがありません。")
         else:
+            print(sum (v.get() for v in self.v.values()))
             str = u"私が使っている OS は、\n"
             for your_os, v in self.v.items():
                 if v.get():
