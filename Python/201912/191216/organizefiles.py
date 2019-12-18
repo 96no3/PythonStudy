@@ -1,7 +1,6 @@
 import re
 import os
 import subprocess
-import os.path as P
 import tkinter as Tk
 import tkinter.filedialog as D
 import tkinter.messagebox as M
@@ -280,9 +279,8 @@ class Frame(Tk.Frame):
                           u"削除の複数選択には対応しておりません。\n"
                           u"1つずつ選択してRemoveしてください。")
             return None
-
+        
         for i in selected2:
-            print("i:",i,"selected2:",selected2)
             self.pickups.remove(self.pickups[i])
             self.listbox2.delete(i)
         self.listbox2.selection_clear(min(selected2), max(selected2))

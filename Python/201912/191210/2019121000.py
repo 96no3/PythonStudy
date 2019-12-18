@@ -4,7 +4,7 @@ import random,math
 pylab.hist([1,1,2,2,2,3,4,5,5,5,6,6,6,6,6])
 pylab.show()
 
-# 平均値
+# 標準正規分布のヒストグラム
 sum([random.gauss(0,1) for _ in range(10000)])/10000
 
 for _ in range(10):
@@ -17,6 +17,7 @@ pylab.show()
 pylab.plot([1,2,3,6],[1,4,9,36])
 pylab.show()
 
+# cosグラフ作成
 xs=[x/100 for x in range(1000)]
 ys=[math.cos(x) for x in xs]
 pylab.plot(xs,ys)
